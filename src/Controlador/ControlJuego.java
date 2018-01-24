@@ -19,18 +19,14 @@ import java.util.Iterator;
 import java.util.Timer;
 import java.util.TimerTask;
 
-/**
- *
- * @author Jonnathan Matute
- */
 public class ControlJuego {
-
+    
     private int mult = 0;
 
     // Dibuja todos los elementos del juego
     public void dibujarTodosElementos(Escenario escenario, ArrayList<Elemento> elemArray, Graphics g, int control) {
         escenario.paintScene(g);
-        //desecha otros elementos
+//desecha otros elementos
         if (control != 0 && control != 4) {
             Iterator<Elemento> it = elemArray.listIterator();
             while (it.hasNext()) {
@@ -38,7 +34,7 @@ public class ControlJuego {
             }
         }
     }
-
+    
     public boolean procesarTodosElementos(Escenario escenario, ArrayList<Elemento> e, ArrayList<Enemigo> enemigos) {
         if (e.isEmpty()) {
             return false;
@@ -60,7 +56,7 @@ public class ControlJuego {
         }
         // Verifica la colision entre blinky y el escenario
         if (blinky.superposicion(escenario.getParedes())) {
-            // cambia la posicion de blinky cuando choca con los muros
+            // /cambia la posicion de blinky cuando choca con los muros
             blinky.backToLastPosition();
             setInvtMovDireccionBlinky(blinky, pPacMan);
         }
@@ -77,14 +73,14 @@ public class ControlJuego {
             // fija el movimiento de pinky cuando ocurre una colision
             inky.regresarUltimaPos();
             setInvtMovDireccionInky(inky);
-        }
+        } 
         //  Verifica colision de inky con escenario
         if (clyde.superposicion(escenario.getParedes())) {
-
+            
             // fija el movimiento de Clyde cuando hay colision
             clyde.volverPosicionUltima();
             setInvMovDirectionClyde(clyde);
-        }
+        }     
         // Verificar que pacman se comio una bolita
         Iterator<Bolita> it = escenario.getBolitas().listIterator();
         while (it.hasNext()) {
@@ -93,7 +89,7 @@ public class ControlJuego {
                 pPacMan.puntosHechos(10);
                 break;
             }
-        }
+        } 
         Iterator<BolitaPoder> it2 = escenario.getBolitaPoder().listIterator();
         while (it2.hasNext()) {
             if (pPacMan.overlapBall(it2.next())) {
@@ -130,7 +126,7 @@ public class ControlJuego {
         while (it2_power.hasNext()) {
             if (pPacMan.overlapBall(it2_power.next())) {
                 it2_power.remove();
-                blinky.setEstado(2); //coloca en vulnerable
+                blinky.setEstado(2); //coloca em vulnerable
                 inky.setEstado(2);
                 pinky.setEstado(2);
                 clyde.setEstado(2);
@@ -157,7 +153,7 @@ public class ControlJuego {
             }
         }
         // variable que detecta si hubo colision entre pacman y enemigo
-        boolean aux = false;
+        boolean aux = false;   
         Elemento eTemp;
         // Verifica colision entre pacman y algun otro elemento
         for (int i = 1; i < e.size(); i++) {
@@ -190,7 +186,7 @@ public class ControlJuego {
                         default:
                             break;
                     }
-                } else if (eTemp instanceof Fruta) {
+                } else if (eTemp instanceof Fruta) { 
                     if (eTemp instanceof Cereza) {
                         pPacMan.puntosHechos(100);
                     }
@@ -203,7 +199,7 @@ public class ControlJuego {
                 }
             }
         }
-
+        
         if (pPacMan.getAux_Puntaje() >= 10000) {
             pPacMan.resetPuntaje();
             pPacMan.addVida();
@@ -217,14 +213,14 @@ public class ControlJuego {
         pinky.mover();
         inky.mover();
         clyde.mover();
-
+        
         return aux;
     }
 
     private void setInvtMovDireccionBlinky(Enemigo enemigo, PacMan pPacMan) {
-
+        
         // Definir nueva direccion
-        switch (enemigo.getMovDireccion()) {
+        switch (enemigo.getMovDireccion()) {            
             case Enemigo.MOVER_IZQUIERDA:
                 if (pPacMan.getPos().getX() > enemigo.getPos().getX()) {
                     enemigo.setMoveDireccion(Enemigo.MOVER_ABAJO);
@@ -232,7 +228,7 @@ public class ControlJuego {
                     enemigo.setMoveDireccion(Enemigo.MOVER_ARRIBA);
                 }
                 break;
-
+            
             case Enemigo.MOVER_DERECHA:
                 if (pPacMan.getPos().getX() > enemigo.getPos().getX()) {
                     enemigo.setMoveDireccion(Enemigo.MOVER_ABAJO);
@@ -240,7 +236,7 @@ public class ControlJuego {
                     enemigo.setMoveDireccion(Enemigo.MOVER_ARRIBA);
                 }
                 break;
-
+            
             case Enemigo.MOVER_ABAJO:
                 if (pPacMan.getPos().getY() > enemigo.getPos().getY()) {
                     enemigo.setMoveDireccion(Enemigo.MOVER_DERECHA);
@@ -248,7 +244,7 @@ public class ControlJuego {
                     enemigo.setMoveDireccion(Enemigo.MOVER_IZQUIERDA);
                 }
                 break;
-
+            
             case Enemigo.MOVER_ARRIBA:
                 if (pPacMan.getPos().getY() > enemigo.getPos().getY()) {
                     enemigo.setMoveDireccion(Enemigo.MOVER_DERECHA);
@@ -261,7 +257,7 @@ public class ControlJuego {
 
     // fijar el movimiento de pinky(nombre del fantasma rosado)
     private void setInvtMovDirectionPinky(Enemigo enemy) {
-
+        
         int aux = (int) (Math.random() * 10) % 2;
         switch (enemy.getMovDireccion()) {
             case Enemigo.MOVER_IZQUIERDA:
@@ -270,7 +266,7 @@ public class ControlJuego {
                 } else {
                     enemy.setMoveDireccion(Enemigo.MOVER_ABAJO);
                 }
-                break;
+                break; 
             case Enemigo.MOVER_DERECHA:
                 if (aux == 0) {
                     enemy.setMoveDireccion(Enemigo.MOVER_ARRIBA);
@@ -278,7 +274,7 @@ public class ControlJuego {
                     enemy.setMoveDireccion(Enemigo.MOVER_ABAJO);
                 }
                 break;
-
+            
             case Enemigo.MOVER_ABAJO:
                 if (aux == 0) {
                     enemy.setMoveDireccion(Enemigo.MOVER_IZQUIERDA);
@@ -286,7 +282,7 @@ public class ControlJuego {
                     enemy.setMoveDireccion(Enemigo.MOVER_DERECHA);
                 }
                 break;
-
+            
             case Enemigo.MOVER_ARRIBA:
                 if (aux == 0) {
                     enemy.setMoveDireccion(Enemigo.MOVER_ARRIBA);
@@ -296,7 +292,7 @@ public class ControlJuego {
                 break;
         }
     }
-
+    
 //mover Clyde(nombre de fantasma)
     private void setInvMovDirectionClyde(Enemigo enemy) {
         int aux = (int) (Math.random() * 10) % 2;
@@ -308,7 +304,7 @@ public class ControlJuego {
                     enemy.setMoveDireccion(Enemigo.MOVER_ABAJO);
                 }
                 break;
-
+            
             case Enemigo.MOVER_DERECHA:
                 if (aux == 0) {
                     enemy.setMoveDireccion(Enemigo.MOVER_ARRIBA);
@@ -316,7 +312,7 @@ public class ControlJuego {
                     enemy.setMoveDireccion(Enemigo.MOVER_ABAJO);
                 }
                 break;
-
+            
             case Enemigo.MOVER_ABAJO:
                 if (aux == 0) {
                     enemy.setMoveDireccion(Enemigo.MOVER_IZQUIERDA);
@@ -324,7 +320,7 @@ public class ControlJuego {
                     enemy.setMoveDireccion(Enemigo.MOVER_DERECHA);
                 }
                 break;
-
+            
             case Enemigo.MOVER_ARRIBA:
                 if (aux == 0) {
                     enemy.setMoveDireccion(Enemigo.MOVER_ARRIBA);
@@ -337,9 +333,9 @@ public class ControlJuego {
 
     // fijar movimiento de inky
     private void setInvtMovDireccionInky(Inky inky) {
-
+        
         int rand = (int) (Math.random() * 10) % 2;
-
+        
         switch (inky.getMovDireccion()) {
             case Inky.MOVER_IZQUIERDA:
                 if (rand == 0) {
@@ -348,7 +344,7 @@ public class ControlJuego {
                     inky.setMoveDireccion(Inky.MOVER_ABAJO);
                 }
                 break;
-
+            
             case Inky.MOVER_DERECHA:
                 if (rand == 0) {
                     inky.setMoveDireccion(Inky.MOVER_ARRIBA);
@@ -356,7 +352,7 @@ public class ControlJuego {
                     inky.setMoveDireccion(Inky.MOVER_ABAJO);
                 }
                 break;
-
+            
             case Inky.MOVER_ARRIBA:
                 if (rand == 0) {
                     inky.setMoveDireccion(Inky.MOVER_IZQUIERDA);
@@ -364,7 +360,7 @@ public class ControlJuego {
                     inky.setMoveDireccion(Inky.MOVER_DERECHA);
                 }
                 break;
-
+            
             case Inky.MOVER_ABAJO:
                 if (rand == 0) {
                     inky.setMoveDireccion(Inky.MOVER_IZQUIERDA);

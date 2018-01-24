@@ -5,8 +5,9 @@ import java.awt.Graphics;
 import javax.swing.ImageIcon;
 
 /**
+ * 
  *
- * @author Jonnathan Matute
+ * @Alex Reinoso
  */
 public class Dibujar {
 

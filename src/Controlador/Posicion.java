@@ -2,12 +2,15 @@ package Controlador;
 
 import java.io.Serializable;
 
-/**
- *
- * @author Jonnathan Matute
- */
-public class Posicion implements Serializable {
 
+public class Posicion implements Serializable {
+    /* 
+      los elementos estan posicionados en un gridLayout(integers)
+       Pero, el movimiento usa floats(lo que hace que sea continuo).
+       Razon por la que x, y son de dipo double
+       x y y varia de 0 a TAMANIO_CELDA*NUM_CELDA.
+       La posicion real del pixel es convertia por la clase dibujar
+       Como consecuencia, cualquier elemento tiene una medida de 1x1(x, y). */
     private double x;
     private double y;
 
@@ -17,7 +20,6 @@ public class Posicion implements Serializable {
     public Posicion(double x, double y) {
         this.setPosition(x, y);
     }
-
     public final boolean setPosition(double x, double y) {
         int factor = (int) Math.pow(10, Constantes.WALK_STEP_DEC_PLACES + 1);
         x = (double) Math.round(x * factor) / factor;
@@ -44,16 +46,13 @@ public class Posicion implements Serializable {
     public double getY() {
         return y;
     }
-
     public boolean volver() {
         return this.setPosition(previaX, previaY);
     }
-
     // Pacman
     public boolean moverseArriba() {
         return this.setPosition(this.getX() - Constantes.MOVER_ESPACIO, this.getY());
     }
-
     public boolean moverseAbajo() {
         return this.setPosition(this.getX() + Constantes.MOVER_ESPACIO, this.getY());
     }
@@ -61,42 +60,33 @@ public class Posicion implements Serializable {
     public boolean moverseDerecha() {
         return this.setPosition(this.getX(), this.getY() + Constantes.MOVER_ESPACIO);
     }
-
     public boolean moverseIzquierda() {
         return this.setPosition(this.getX(), this.getY() - Constantes.MOVER_ESPACIO);
     }
-
     // Enemigo
     public boolean moverArribaEnemigo() {
         return this.setPosition(this.getX() - Constantes.CAMINAR_1PASO_ENEMIGO, this.getY());
     }
-
     public boolean moverabajoEnemigo() {
         return this.setPosition(this.getX() + Constantes.CAMINAR_1PASO_ENEMIGO, this.getY());
     }
-
     public boolean moverDerechaEnemigo() {
         return this.setPosition(this.getX(), this.getY() + Constantes.CAMINAR_1PASO_ENEMIGO);
     }
-
     public boolean moverIzquierdaEnemigo() {
-        return this.setPosition(this.getX(), this.getY() - Constantes.CAMINAR_1PASO_ENEMIGO);
+	return this.setPosition(this.getX(), this.getY() - Constantes.CAMINAR_1PASO_ENEMIGO);
     }
-
     // relentizar enemigo
     public boolean arribaLentoEnemigo() {
         return this.setPosition(this.getX() - Constantes.CAMINAR_1PASO_LENTO_ENEMIGO, this.getY());
     }
-
     public boolean abajoLentoEnemigo() {
         return this.setPosition(this.getX() + Constantes.CAMINAR_1PASO_LENTO_ENEMIGO, this.getY());
     }
-
     public boolean derechaLenteEnemigo() {
         return this.setPosition(this.getX(), this.getY() + Constantes.CAMINAR_1PASO_LENTO_ENEMIGO);
     }
-
     public boolean izquierdaLentoEnemigo() {
-        return this.setPosition(this.getX(), this.getY() - Constantes.CAMINAR_1PASO_LENTO_ENEMIGO);
+	return this.setPosition(this.getX(), this.getY() - Constantes.CAMINAR_1PASO_LENTO_ENEMIGO);
     }
 }
