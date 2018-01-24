@@ -15,7 +15,7 @@ import Controlador.Constantes;
 
 /**
  *
- * @author Jonnathan Matute
+ * @author Alex Reinoso
  */
 public class Escenario1 extends Escenario {
 

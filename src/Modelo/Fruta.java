@@ -5,7 +5,7 @@ import Controlador.Dibujar;
 
 /**
  *
- * @author Jonnathan Matute
+ * @author Daniel Peralta
  */
 public abstract class Fruta extends Elemento {
 

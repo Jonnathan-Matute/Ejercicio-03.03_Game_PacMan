@@ -7,7 +7,7 @@ import javax.swing.ImageIcon;
 /**
  * 
  *
- * @Alex Reinoso
+ * @author Daniel Peralta
  */
 public class Dibujar {
 

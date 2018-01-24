@@ -8,7 +8,7 @@ public class Constantes {
     
     public static final int NUM_CELDA = 19;
 
-    public static final int WALK_STEP_DEC_PLACES = 1;
+    public static final int CAMINAR_LUGAR = 1;
 
     public static final int RETRASAR = 5;
 

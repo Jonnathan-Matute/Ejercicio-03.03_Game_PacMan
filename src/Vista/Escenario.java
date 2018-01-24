@@ -13,7 +13,7 @@ import Controlador.Constantes;
 
 /**
  *
- * @author Jonnathan Matute
+ * @author Alex Reinoso
  */
 public abstract class Escenario {
 

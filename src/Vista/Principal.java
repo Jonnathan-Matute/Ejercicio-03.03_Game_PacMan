@@ -2,7 +2,7 @@ package Vista;
 
 /**
  *
- * @author Jonnathan Matute
+ * @author Alex Reinoso
  */
 public class Principal {
 

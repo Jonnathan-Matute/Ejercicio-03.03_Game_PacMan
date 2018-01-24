@@ -5,7 +5,7 @@ import Controlador.Dibujar;
 
 /**
  *
- * @author Alex Reinoso
+ * @author Daniel Peralta
  */
 public class Bolita extends Elemento {
 

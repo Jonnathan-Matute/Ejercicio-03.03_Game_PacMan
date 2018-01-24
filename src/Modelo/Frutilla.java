@@ -2,7 +2,7 @@ package Modelo;
 
 /**
  *
- * @author Jonnathan Matute
+ * @author Daniel Peralta
  */
 public class Frutilla extends Fruta {
 

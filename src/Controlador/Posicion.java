@@ -21,7 +21,7 @@ public class Posicion implements Serializable {
         this.setPosition(x, y);
     }
     public final boolean setPosition(double x, double y) {
-        int factor = (int) Math.pow(10, Constantes.WALK_STEP_DEC_PLACES + 1);
+        int factor = (int) Math.pow(10, Constantes.CAMINAR_LUGAR + 1);
         x = (double) Math.round(x * factor) / factor;
         y = (double) Math.round(y * factor) / factor;
 
