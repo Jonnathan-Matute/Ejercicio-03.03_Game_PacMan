@@ -25,7 +25,7 @@ public class IniciarEscenario extends Escenario {
             this.imgExit = Toolkit.getDefaultToolkit().getImage(new File(".").getCanonicalPath() + Constantes.CAMINO + "button_exit.png");
             this.fondo = Toolkit.getDefaultToolkit().getImage(new File(".").getCanonicalPath() + Constantes.CAMINO + "background_pacman1.jpg");
         } catch (IOException e) {
-            System.err.println("Erro: Imagenes de pantalla no encontradas\n " + e.getMessage());
+            System.err.println("Error: Imagenes de pantalla no encontradas\n " + e.getMessage());
         }
     }
 

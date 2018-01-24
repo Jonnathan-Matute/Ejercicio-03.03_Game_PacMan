@@ -62,7 +62,7 @@ public class Escenario2 extends Escenario {
             }
             mapRead.close();
         } catch (FileNotFoundException ex) {
-            System.out.println("Erro na abertura do arquivo.");
+            System.out.println("Error no abertura de archivo.");
             Logger.getLogger(Escenario1.class.getName()).log(Level.SEVERE, null, ex);
         }    // Crea bolitas
         for (int x = 0; x < Constantes.NUM_CELDA; x++) {

@@ -12,10 +12,8 @@ import Modelo.Enemigo;
 import Modelo.Inky;
 import Modelo.Pinky;
 import Modelo.Frutilla;
-
 import Controlador.Constantes;
 import Controlador.Dibujar;
-
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
@@ -30,7 +28,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Timer;
@@ -68,22 +65,14 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
     private Image imgNum0, imgNum1, imgNum2, imgNum3,
             imgNum4, imgNum5, imgNum6, imgNum7, imgNum8, imgNum9;
 
-    // Controle de tela
-    // 0 - Tela inicial
-    // 1 - Primeira tela
-    // 2 - Segunda tela
-    // 3 - Terceira tela
-    // 4 - Tela de fim do jogo
     private int controlScene;
 
     // Construtor
     public PantallaJuego() {
         Dibujar.setPantallaJuego(this);
         initComponents();
-
         this.addKeyListener(this);
         this.addMouseListener(this);
-
         this.setSize(Constantes.NUM_CELDA * Constantes.TAMANIO_CELDA + getInsets().left + getInsets().right,
                 Constantes.NUM_CELDA * Constantes.TAMANIO_CELDA + getInsets().top + getInsets().bottom + 50);
 
@@ -141,35 +130,24 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
         this.executor_scene_1.execute(pacMan);
         this.executor_scene_1.execute(inky);
 
-        // Cria cenario
+        // Crea escenario
         this.controlScene = 0;
         newScene(controlScene);
     }
 
-    // Define qual será e Cria cenario com todos os seus elementos
     private void newScene(int scene) {
         switch (scene) {
-            // Tela Inicial
+
             case 0:
                 this.scene = new IniciarEscenario();
-
-                // Total de vidas do pacman
                 this.pacMan.setVida(3);
-
-                // Resetar pontos
                 this.pacMan.resetPuntajeTotal();
-
                 break;
 
-            // Tela 1
             case 1:
                 this.scene = new Escenario1();
                 this.scene.setBlock("brick.png");
-
-                // Reseta posições
                 resetEnemyPac();
-
-                // Determinar posição para frutilla
                 int aux1,
                  aux2;
                 do {
@@ -180,7 +158,6 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
                 this.strawberry.setPosicion(aux1, aux2);
                 this.addElement(strawberry);
 
-                // Determinar posição para cereza
                 do {
                     aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
                     aux2 = random.nextInt(Constantes.NUM_CELDA - 1);
@@ -188,18 +165,12 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
                 this.cherry.setPosicion(aux1, aux2);
                 this.addElement(cherry);
-
                 break;
 
-            // Tela 2
             case 2:
                 this.scene = new Escenario2();
                 this.scene.setBlock("brick.png");
-
-                // Resetar posição
                 resetEnemyPac();
-
-                // Determinar posição para frutilla
                 do {
                     aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
                     aux2 = random.nextInt(Constantes.NUM_CELDA - 1);
@@ -207,8 +178,6 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
                 this.strawberry.setPosicion(aux1, aux2);
                 this.addElement(strawberry);
-
-                // Determinar posição para cereza
                 do {
                     aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
                     aux2 = random.nextInt(Constantes.NUM_CELDA - 1);
@@ -216,18 +185,12 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
                 this.cherry.setPosicion(aux1, aux2);
                 this.addElement(cherry);
-
                 break;
 
-            // Tela 3
             case 3:
                 this.scene = new Escenario3();
                 this.scene.setBlock("brick.png");
-
-                // Resetar posição
                 resetEnemyPac();
-
-                // Determinar posição para frutilla
                 do {
                     aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
                     aux2 = random.nextInt(Constantes.NUM_CELDA - 1);
@@ -235,8 +198,6 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
                 this.strawberry.setPosicion(aux1, aux2);
                 this.addElement(strawberry);
-
-                // Determinar posição para cereza
                 do {
                     aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
                     aux2 = random.nextInt(Constantes.NUM_CELDA - 1);
@@ -247,7 +208,6 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
                 break;
 
-            // Game Over
             case 4:
                 this.scene = new PantallaGameOver();
                 break;
@@ -258,12 +218,10 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
         }
     }
 
-    // Adicionar elementos na lista
     public final void addElement(Elemento elem) {
         elemArray.add(elem);
     }
 
-    // Remover elementos na lista
     public void removeElement(Elemento elem) {
         elemArray.remove(elem);
     }
@@ -274,57 +232,43 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
         Graphics g2 = g.create(getInsets().right, getInsets().top,
                 getWidth() - getInsets().left, getHeight() - getInsets().bottom);
 
-        // Pintar elementos
         this.controller.dibujarTodosElementos(scene, elemArray, g2, controlScene);
 
-        // Se nao for a tela inicial nem a final
         if (controlScene != 0 && controlScene != 4) {
 
-            // Controla o movimento do blinky
             setBlinkyMovDirection();
 
-            // Controla o movimento do pinky
             setPinkyMovDirection();
 
-            // Controla o movimento do inky
             setInkyMovDirection();
 
-            // Controla o movimento do clyde
             setClydeMovDirection();
 
-            // Verificar colisao entre elementos
             if (controller.procesarTodosElementos(scene, elemArray, enemys)) {
 
-                // Remove uma vida do pacman
                 pacMan.removerVida();
 
-                // Retorna posições iniciais
                 resetEnemyPac();
 
-                // Verifica se acabou as vidas
                 if (pacMan.getVida() == 0) {
-                    System.out.println("Entrou");
+                    System.out.println("Entra");
                     this.controlScene = 4;
                     newScene(controlScene);
                     return;
                 }
             }
 
-            // Verifica se comeu todas as bolinhas
             if (scene.getBolitas().isEmpty() && scene.getBolitaPoder().isEmpty()) {
                 controlScene++;
                 newScene(controlScene);
             }
 
-            // Desenhar informações
             int aux = Constantes.TAMANIO_CELDA * Constantes.NUM_CELDA;
 
-            // Vidas
             for (int i = 0; i < pacMan.getVida(); i++) {
                 g2.drawImage(imgLife, 10 + (32 * i), aux + 10, 30, 30, null);
             }
 
-            // Frutas
             if (elemArray.contains(strawberry)) {
                 g2.drawImage(strawberry.getImgElement().getImage(), 140, aux + 7, 30, 33, null);
             }
@@ -333,10 +277,8 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
                 g2.drawImage(cherry.getImgElement().getImage(), 180, aux + 7, 30, 33, null);
             }
 
-            // Pontuação
             g2.drawImage(imgScore, 340, aux + 2, 75, 45, null);
 
-            // Determinar pontos
             String score = Integer.toString(pacMan.getPuntaje());
 
             for (int i = 0; i < score.length(); i++) {
@@ -384,9 +326,7 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
         }
     }
 
-    // Movimentar Blinky
     private void setBlinkyMovDirection() {
-        // Verifica movimentação do blinky
         switch (pacMan.getMovDireccion()) {
             case PacMan.MOVER_ABAJO:
 
@@ -426,10 +366,9 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
         }
     }
 
-    // Movimenta Inky
+    // Movimiento Inky
     private void setInkyMovDirection() {
 
-        // Se a distância foi menor que 4, se mover igual ao Blinky.
         inky.setDistanciaBlinky(inky.getPos().getX(), inky.getPos().getY(),
                 blinky.getPos().getX(), blinky.getPos().getY());
 
@@ -477,7 +416,7 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
         }
     }
 
-    // Movimenta Pinky
+    // Movimiento Pinky
     private void setPinkyMovDirection() {
         switch (pacMan.getMovDireccion()) {
             case PacMan.MOVER_ABAJO:
@@ -506,14 +445,12 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
         }
     }
 
-    // Movimenta Clyde
+    // Movimiento Clyde
     private void setClydeMovDirection() {
 
-        // Se a distância foi menor que 4, se mover igual ao Blinky.
         clyde.setDistanciaPacman(clyde.getPos().getX(), clyde.getPos().getY(),
                 pacMan.getPos().getX(), pacMan.getPos().getY());
 
-        // Se a distancia for menor que 4, segue pacman
         if (clyde.getDistanciaPacman() > 5) {
             switch (pacMan.getMovDireccion()) {
                 case PacMan.MOVER_ABAJO:
@@ -559,7 +496,6 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
     }
 
     public void go() {
-        // Timer para pintar a tela
         TimerTask repaint = new TimerTask() {
             @Override
             public void run() {
@@ -567,15 +503,12 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
             }
         };
 
-        // Time para frutilla
         TimerTask timerStrawberry = new TimerTask() {
             @Override
             public void run() {
                 if (controlScene != 0 && controlScene != 4) {
                     if (!strawberry.isVisible()) {
 
-                        // Determinar uma nova posição para frutilla
-                        // a cada nova aparição
                         int aux1, aux2;
                         do {
                             aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
@@ -584,29 +517,22 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
                         strawberry.setPosicion(aux1, aux2);
 
-                        // Deixar fruta visivel
                         strawberry.setVisible(true);
                         strawberry.setTransposable(false);
 
                     } else {
 
-                        // Deixar fruta invisivel
                         strawberry.setVisible(false);
                         strawberry.setTransposable(true);
                     }
                 }
             }
         };
-
-        // Time para cereza
         TimerTask timerCherry = new TimerTask() {
             @Override
             public void run() {
                 if (controlScene != 0 && controlScene != 4) {
                     if (!cherry.isVisible()) {
-
-                        // Determinar uma nova posição para cereza
-                        // a cada nova aparição
                         int aux1, aux2;
                         do {
                             aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
@@ -615,13 +541,11 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
                         strawberry.setPosicion(aux1, aux2);
 
-                        // Deixar fruta visivel
                         cherry.setVisible(true);
                         cherry.setTransposable(false);
 
                     } else {
 
-                        // Deixar fruta invisivel
                         cherry.setVisible(false);
                         cherry.setTransposable(true);
                     }
@@ -639,24 +563,20 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
     public void keyPressed(KeyEvent e) {
         int aux = controlScene;
         switch (aux) {
-            // Tela Inicial
             case 0:
                 switch (e.getKeyCode()) {
-                    //Caso o usuário digite espaço pausa o pacman
                     case KeyEvent.VK_SPACE:
                         controlScene = 1;
                         newScene(controlScene);
                         break;
-                    
-                    //Caso o usuário digite Q pergunta se deseja sair do jogo
+
                     case KeyEvent.VK_Q:
                         if (JOptionPane.showConfirmDialog(null,
-                                "Deseja realmente sair ?", "Sair", JOptionPane.YES_NO_OPTION) == 0) {
+                                "¿ Desea realmente salir ?", "Salir", JOptionPane.YES_NO_OPTION) == 0) {
                             System.exit(0);
                         }
                         break;
-                    
-                    //Caso o usuário digite L executa a operação de salvamento
+
                     case KeyEvent.VK_L:
                         ObjectInputStream load;
                         try {
@@ -690,50 +610,42 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
                 }
                 break;
 
-            // Tela Final
             case 4:
                 if (e.getKeyCode() == KeyEvent.VK_Q) {
                     if (JOptionPane.showConfirmDialog(null,
-                            "Deseja realmente sair ?", "Sair", JOptionPane.YES_NO_OPTION) == 0) {
+                            "¿ Desea realmente salir ?", "Salir", JOptionPane.YES_NO_OPTION) == 0) {
                         System.exit(0);
                     }
                 }
                 break;
 
-            // Qualquer outra tela
             default:
                 switch (e.getKeyCode()) {
                     case KeyEvent.VK_UP:
-                        // Setar movimentação do pacman para cima
                         pacMan.setVuelta(true);
                         pacMan.setSiguienteDireccion(PacMan.MOVER_ARRIBA);
                         break;
 
                     case KeyEvent.VK_DOWN:
-                        // Setar movimentação do pacman para baixo
                         pacMan.setVuelta(true);
                         pacMan.setSiguienteDireccion(PacMan.MOVER_ABAJO);
                         break;
 
                     case KeyEvent.VK_LEFT:
-                        // Setar movimentaçao do pacman para a esquerda
                         pacMan.setVuelta(true);
                         pacMan.setSiguienteDireccion(PacMan.MOVER_IZQUIERDA);
                         break;
 
                     case KeyEvent.VK_RIGHT:
-                        // Setar movimentação do pacman para a direita
                         pacMan.setVuelta(true);
                         pacMan.setSiguienteDireccion(PacMan.MOVER_DERECHA);
                         break;
 
                     case KeyEvent.VK_SPACE:
-                        // Pausa o pacman
                         pacMan.setVuelta(true);
                         pacMan.setSiguienteDireccion(PacMan.PARAR);
                         break;
-                    
-                    //Executa a operação de salvamento do jogo
+
                     case KeyEvent.VK_S:
                         try {
                             Guardar saveClass = new Guardar();
@@ -767,17 +679,12 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
         }
     }
 
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("SCC0604 - Pacman");
+        setTitle("Ejercicio-03.03_Game_PacMan");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setLocation(new java.awt.Point(20, 20));
         setResizable(false);
@@ -814,21 +721,17 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
     public void mousePressed(MouseEvent e) {
         int aux = controlScene;
         switch (aux) {
-            // Tela inicial
             case 0:
-                // Verifica se clicou em algum botao
                 int a1 = (Constantes.NUM_CELDA * Constantes.TAMANIO_CELDA) / 2;
                 int x1 = e.getPoint().x;
                 int y1 = e.getPoint().y;
 
-                // iniciar jogo
                 if ((100 <= y1 && y1 <= 160) && (a1 - 110 <= x1 && x1 <= a1 + 110)) {
                     controlScene = 1;
                     newScene(controlScene);
 
                 } else if ((200 <= y1 && y1 <= 260) && (a1 - 110 <= x1 && x1 <= a1 + 110)) {
 
-                    // Iniciar jogo salvo
                     ObjectInputStream load;
                     try {
                         load = new ObjectInputStream(new FileInputStream("./src/data/save"));
@@ -860,30 +763,26 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
                 } else if ((300 <= y1 && y1 <= 360) && (a1 - 110 <= x1 && x1 <= a1 + 110)) {
 
-                    // Sair
                     if (JOptionPane.showConfirmDialog(null,
-                            "Deseja realmente sair ?", "Sair", JOptionPane.YES_NO_OPTION) == 0) {
+                            "¿ Desea realmente salir ?", "Salir", JOptionPane.YES_NO_OPTION) == 0) {
                         System.exit(0);
                     }
                 }
 
                 break;
 
-            // Game Over
             case 4:
-                // Verifica se clicou em algum botao
                 int a2 = (Constantes.NUM_CELDA * Constantes.TAMANIO_CELDA) / 2;
                 int x2 = e.getPoint().x;
                 int y2 = e.getPoint().y;
 
-                // Volta para a tela inicial
                 if ((350 <= y2 && y2 <= 410) && (a2 - 210 <= x2 && x2 <= a2 - 10)) {
                     controlScene = 0;
                     newScene(controlScene);
                 } else if ((350 <= y2 && y2 <= 410) && (a2 + 10 <= x2 && x2 <= a2 + 210)) {
-                    // Sair
+
                     if (JOptionPane.showConfirmDialog(null,
-                            "Deseja realmente sair ?", "Sair", JOptionPane.YES_NO_OPTION) == 0) {
+                            "¿ Desea realmente salir ?", "Salir", JOptionPane.YES_NO_OPTION) == 0) {
                         System.exit(0);
                     }
                 }

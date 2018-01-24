@@ -60,7 +60,7 @@ public class ControlJuego {
         }
         // Verifica la colision entre blinky y el escenario
         if (blinky.superposicion(escenario.getParedes())) {
-            // /cambia la posicion de blinky cuando choca con los muros
+            // cambia la posicion de blinky cuando choca con los muros
             blinky.backToLastPosition();
             setInvtMovDireccionBlinky(blinky, pPacMan);
         }
@@ -130,7 +130,7 @@ public class ControlJuego {
         while (it2_power.hasNext()) {
             if (pPacMan.overlapBall(it2_power.next())) {
                 it2_power.remove();
-                blinky.setEstado(2); //coloca em vulnerable
+                blinky.setEstado(2); //coloca en vulnerable
                 inky.setEstado(2);
                 pinky.setEstado(2);
                 clyde.setEstado(2);

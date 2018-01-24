@@ -49,7 +49,7 @@ public class Escenario1 extends Escenario {
 
     @Override
     protected void drawSceneFinal() {
-        // Ler cenario
+        // Leer Escenario
         Scanner mapRead;
         try {
             mapRead = new Scanner(new FileInputStream("./src/maps/map1.txt"));
@@ -60,7 +60,7 @@ public class Escenario1 extends Escenario {
             }
             mapRead.close();
         } catch (FileNotFoundException ex) {
-            System.out.println("Erro no arqv");
+            System.out.println("Error no arqv");
             Logger.getLogger(Escenario1.class.getName()).log(Level.SEVERE, null, ex);
         }
 

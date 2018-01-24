@@ -51,6 +51,7 @@ public class Escenario3 extends Escenario {
         puntos = (tBolitas - bolitas.size()) * 10;
     }
 
+    @Override
     protected void drawSceneFinal() {
         try {
             Scanner mapRead = new Scanner(new FileInputStream("./src/maps/map3.txt"));
@@ -61,7 +62,7 @@ public class Escenario3 extends Escenario {
             }
             mapRead.close();
         } catch (FileNotFoundException ex) {
-            System.out.println("Erro na abertura do arquivo.");
+            System.out.println("Error no abertura de archivo.");
             Logger.getLogger(Escenario1.class.getName()).log(Level.SEVERE, null, ex);
         }
         for (int x = 0; x < Constantes.NUM_CELDA; x++) {

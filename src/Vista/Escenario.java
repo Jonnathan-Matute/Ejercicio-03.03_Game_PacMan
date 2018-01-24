@@ -32,7 +32,7 @@ public abstract class Escenario {
         this.bolitaPoder = new ArrayList<>();
         this.puntos = 0;
 
-        // Bordas
+        // Bordes
         for (int i = 0; i < Constantes.NUM_CELDA; i++) {
             mapa[i][0] = 1;
             mapa[0][i] = 1;
@@ -59,10 +59,10 @@ public abstract class Escenario {
         return mapa[x][y];
     }
 
-    // Pintar cenario
+    // Pintar Escenario
     public abstract void paintScene(Graphics g);
 
-    // Termina de definir cenario
+    // Termina de definir Escenario
     protected abstract void drawSceneFinal();
 
     public List<Bolita> getBolitas() {
