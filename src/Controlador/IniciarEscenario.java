@@ -37,8 +37,8 @@ public class IniciarEscenario extends Escenario {
         g.fillRect(0, 0, aux, aux + 50);
         g.drawImage(fondo, 0, 0, aux, aux+50, null);
         g.drawImage(imgStart, (aux/2)-120,50,220,60, null);
-        g.drawImage(imgscore, (aux/2)-120,150, 230, 60, null);
-        g.drawImage(imgExit, (aux/2)-120,250, 230, 70, null);
+        g.drawImage(imgscore, (aux/2)-120,150, 220, 60, null);
+        g.drawImage(imgExit, (aux/2)-120,250, 220, 70, null);
     }
 
     @Override

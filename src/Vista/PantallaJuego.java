@@ -2,7 +2,7 @@ package Vista;
 
 import Controlador.IniciarEscenario;
 import Controlador.ControlJuego;
-import Controlador.Guardar;
+import Modelo.Guardar;
 import Modelo.Blinky;
 import Modelo.PacMan;
 import Modelo.Elemento;
@@ -577,12 +577,12 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
                         }
                         break;
 
-                    case KeyEvent.VK_L:
-                        ObjectInputStream load;
-                        try {
-                            load = new ObjectInputStream(new FileInputStream("./src/data/save"));
-                            Guardar saveClass = (Guardar) load.readObject();
-                            load.close();
+                    case KeyEvent.VK_S:
+                        //ObjectInputStream Score;
+                        /*try {
+                            Score = new ObjectInputStream(new FileInputStream("./src/data/save"));
+                            Guardar saveClass = (Guardar) Score.readObject();
+                            Score.close();
 
                             scene = new Escenario1();
                             scene.setBlock("brick.png");
@@ -605,7 +605,7 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
                             Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (IOException | ClassNotFoundException ex) {
                             Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        }*/
                         break;
                 }
                 break;
@@ -647,9 +647,10 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
                         break;
 
                     case KeyEvent.VK_S:
-                        try {
+                        /*try {
                             Guardar saveClass = new Guardar();
-                            saveClass.pacMan = pacMan;
+                            
+                            /*saveClass.pacMan = pacMan;
                             saveClass.blinky = blinky;
                             saveClass.inky = inky;
                             saveClass.pinky = pinky;
@@ -662,14 +663,14 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
                             saveClass.bolitasPoder = scene.getBolitaPoder();
                             saveClass.paredes = scene.getParedes();
                             saveClass.controlScenario = this.controlScene;
-                            ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream("./src/data/save"));
-                            save.writeObject(saveClass);
-                            save.close();
+                            //ObjectOutputStream save = new ObjectOutputStream(new FileOutputStream("./src/data/save"));
+                            //save.writeObject(saveClass);
+                            //save.close();
                         } catch (FileNotFoundException ex) {
                             Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
                         } catch (IOException ex) {
                             Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
-                        }
+                        }*/
 
                     default:
                         break;
@@ -732,16 +733,16 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
                 } else if ((200 <= y1 && y1 <= 260) && (a1 - 110 <= x1 && x1 <= a1 + 110)) {
 
-                    ObjectInputStream load;
-                    try {
+                    //ObjectInputStream load;
+                    /*try {
                         load = new ObjectInputStream(new FileInputStream("./src/data/save"));
                         Guardar saveClass = (Guardar) load.readObject();
-                        load.close();
+                        load.close();*/
 
                         scene = new Escenario1();
                         scene.setBlock("brick.png");
 
-                        pacMan = saveClass.pacMan;
+                        /*pacMan = saveClass.pacMan;
                         blinky = saveClass.blinky;
                         inky = saveClass.inky;
                         pinky = saveClass.pinky;
@@ -759,7 +760,7 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
                         Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
                     } catch (IOException | ClassNotFoundException ex) {
                         Logger.getLogger(PantallaJuego.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                    }*/
 
                 } else if ((300 <= y1 && y1 <= 360) && (a1 - 110 <= x1 && x1 <= a1 + 110)) {
 
