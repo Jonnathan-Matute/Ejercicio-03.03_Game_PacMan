@@ -11,6 +11,7 @@ public class Principal {
             @Override
             public void run() {
                 PantallaJuego screen = new PantallaJuego();
+                screen.setLocation(610,210);
                 screen.setVisible(true);
                 screen.createBufferStrategy(2);
                 screen.go();

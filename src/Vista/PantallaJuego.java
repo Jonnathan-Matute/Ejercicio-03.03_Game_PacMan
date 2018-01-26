@@ -207,12 +207,30 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
                 this.addElement(cherry);
 
                 break;
-
             case 4:
+                this.scene = new Escenario4();
+                this.scene.setBlock("brick.png");
+                resetEnemyPac();
+                do {
+                    aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
+                    aux2 = random.nextInt(Constantes.NUM_CELDA - 1);
+                } while (this.scene.mapa(aux1, aux2) == 1);
+
+                this.strawberry.setPosicion(aux1, aux2);
+                this.addElement(strawberry);
+                do {
+                    aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
+                    aux2 = random.nextInt(Constantes.NUM_CELDA - 1);
+                } while (this.scene.mapa(aux1, aux2) == 1);
+
+                this.cherry.setPosicion(aux1, aux2);
+                this.addElement(cherry);
+
+            case 5:
                 this.scene = new PantallaGameOver();
                 break;
 
-            case 5:
+            case 6:
 
                 break;
         }
