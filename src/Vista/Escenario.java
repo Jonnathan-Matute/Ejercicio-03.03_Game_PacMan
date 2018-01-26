@@ -41,7 +41,7 @@ public abstract class Escenario {
         }
     }
 
-    public void setBlock(String imageName) {
+    public void setBloque(String imageName) {
         // Imagem
         try {
             this.ladrillo = Toolkit.getDefaultToolkit().getImage(new java.io.File(".").getCanonicalPath() + Constantes.CAMINO + imageName);
@@ -72,31 +72,24 @@ public abstract class Escenario {
     public void setBolitas(List<Bolita> bolitas) {
         this.bolitas = bolitas;
     }
-
     public void setBolitaPoder(List<BolitaPoder> bolitaPoder) {
         this.bolitaPoder = bolitaPoder;
     }
-
     public List<Elemento> getParedes() {
         return paredes;
     }
-
     public void setParedes(List<Elemento> paredes) {
         this.paredes = paredes;
     }
-
     public int getTotalBolitas() {
         return this.bolitas.size();
     }
-
     public int getPuntos() {
         return puntos;
     }
-
     public List<BolitaPoder> getBolitaPoder() {
         return bolitaPoder;
     }
-
     public int getTotalBolitaPoder() {
         return this.bolitaPoder.size();
     }

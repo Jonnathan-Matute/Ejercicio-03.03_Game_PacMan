@@ -3,13 +3,11 @@ package Controlador;
 import java.io.File;
 
 public class Constantes {
-
-    public static final int TAMANIO_CELDA = 30;
     
+    //final static es para poder ser usado dentro de metodos en otras clases sin tener que estarlos llamando o instanciando
+    public static final int TAMANIO_CELDA = 30;
     public static final int NUM_CELDA = 19;
-
     public static final int CAMINAR_LUGAR = 1;
-
     public static final int RETRASAR = 5;
 
     public static final int TIMER_CEREZA = 50000;

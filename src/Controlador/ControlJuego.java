@@ -26,7 +26,7 @@ public class ControlJuego {
     // Dibuja todos los elementos del juego
     public void dibujarTodosElementos(Escenario escenario, ArrayList<Elemento> elemArray, Graphics g, int control) {
         escenario.paintScene(g);
-//desecha otros elementos
+    //dibuja otros elementos
         if (control != 0 && control != 4) {
             Iterator<Elemento> it = elemArray.listIterator();
             while (it.hasNext()) {
@@ -63,7 +63,13 @@ public class ControlJuego {
         // Verifia colision de pinky con el escenario
         if (pinky.superposicion(escenario.getParedes())) {
             // reinicia el movimiento de pinky cuando choca con paredes
-            pinky.volverUltimaPosicion();
+            pinky.volverUltimaPosicion(); 
+                    
+                    
+                    
+                    
+                    
+                   
             setInvtMovDirectionPinky(pinky);
             // si hay colision, pinky se pone en estado aleatorio
             pinky.setEstadoDireccion(Pinky.MOVER_ALEAT);
@@ -96,7 +102,7 @@ public class ControlJuego {
                 mult = 1;
                 pPacMan.puntosHechos(50);
                 it2.remove();
-                blinky.setEstado(Enemigo.PERSEGUIR); //hade que persigan a pacman
+                blinky.setEstado(Enemigo.PERSEGUIR); //hace que persigan a pacman
                 inky.setEstado(Enemigo.PERSEGUIR);
                 pinky.setEstado(Enemigo.PERSEGUIR);
                 clyde.setEstado(Enemigo.PERSEGUIR);

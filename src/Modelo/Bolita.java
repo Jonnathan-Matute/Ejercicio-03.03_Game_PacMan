@@ -25,7 +25,8 @@ public class Bolita extends Elemento {
         this.isTransposable = false;
         this.setPosicion(x, y);
     }
-
+    
+    //dibuja la bolita tomando como referencia x, y
     @Override
     public void autoDraw(Graphics g) {
         Dibujar.draw(g, imageIcon, pos.getY(), pos.getX());

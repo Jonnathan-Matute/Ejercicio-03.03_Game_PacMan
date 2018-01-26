@@ -2,18 +2,18 @@ package Modelo;
 
 import java.awt.Image;
 import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+//import javax.persistence.Entity;
+//import javax.persistence.Id;
 
 /**
  *
  * @author Alex Reinoso
  */
-@Entity
+//@Entity
 public class Guardar implements Serializable 
 {
     
-    @Id
+   // @Id
     private long id;
     private String nombre;
     private Image imgscore;

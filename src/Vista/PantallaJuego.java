@@ -146,7 +146,7 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
             case 1:
                 this.scene = new Escenario1();
-                this.scene.setBlock("brick.png");
+                this.scene.setBloque("brick.png");
                 resetEnemyPac();
                 int aux1,
                  aux2;
@@ -169,7 +169,7 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
             case 2:
                 this.scene = new Escenario2();
-                this.scene.setBlock("brick.png");
+                this.scene.setBloque("brick.png");
                 resetEnemyPac();
                 do {
                     aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
@@ -189,7 +189,7 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
 
             case 3:
                 this.scene = new Escenario3();
-                this.scene.setBlock("brick.png");
+                this.scene.setBloque("brick.png");
                 resetEnemyPac();
                 do {
                     aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
@@ -209,7 +209,7 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
                 break;
             case 4:
                 this.scene = new Escenario4();
-                this.scene.setBlock("brick.png");
+                this.scene.setBloque("brick.png");
                 resetEnemyPac();
                 do {
                     aux1 = random.nextInt(Constantes.NUM_CELDA - 1);
@@ -758,7 +758,7 @@ public class PantallaJuego extends JFrame implements KeyListener, MouseListener 
                         load.close();*/
 
                         scene = new Escenario1();
-                        scene.setBlock("brick.png");
+                        scene.setBloque("brick.png");
 
                         /*pacMan = saveClass.pacMan;
                         blinky = saveClass.blinky;

@@ -6,6 +6,8 @@ public class Inky extends Enemigo implements Runnable {
     public static int MOVI_PAC = 1;
     private int estadoDireccion;
     private double distanciaBlinky;
+    
+    //estamos cargando al fantasma inky(medio como azul claro), su estado agresivo y su estado mortal
 
     public Inky() {
         super(new String[]{"inky.png", "vulnerable_ghost.png"});

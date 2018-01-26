@@ -19,11 +19,14 @@ public class Clyde extends Enemigo {
     public void volverPosicionUltima() {
         this.pos.volver();
     }
-
+    
     public double getDistanciaPacman() {
         return distanciaPacman;
     }
+    
 
+    //mide la distancia entre clyde(fantasma) y pacman, por medio del calculo de la hipotenusa, toma tomo ref sus ejes x, y 
+    //respectivos
     public void setDistanciaPacman(double x1, double y1, double x2, double y2) {
         this.distanciaPacman = Math.hypot(x1 - x2, y1 - y2);
     }

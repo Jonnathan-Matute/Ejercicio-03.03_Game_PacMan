@@ -52,6 +52,7 @@ public class Escenario1 extends Escenario {
         // Leer Escenario
         Scanner mapRead;
         try {
+            //carga los archivos que estan en el paquete mapa, son matrices
             mapRead = new Scanner(new FileInputStream("./src/maps/map1.txt"));
             for (int i = 0; i < Constantes.NUM_CELDA; i++) {
                 for (int j = 0; j < Constantes.NUM_CELDA; j++) {
@@ -60,20 +61,22 @@ public class Escenario1 extends Escenario {
             }
             mapRead.close();
         } catch (FileNotFoundException ex) {
-            System.out.println("Error no arqv");
+            System.out.println("Error");
             Logger.getLogger(Escenario1.class.getName()).log(Level.SEVERE, null, ex);
         }
-
+        //Genera las bolitas, bolitas de poder y paredes dentro del escenario o laberinto
         for (int x = 0; x < Constantes.NUM_CELDA; x++) {
             for (int y = 0; y < Constantes.NUM_CELDA; y++) {
+                //para agregar las bolitas y los poderes dentro del mapa, basandose en los valores 
+                //de las matrices almacenadas en el paquete maps
                 switch (mapa[x][y]) {
-                    case 0:
+                    case 0://es para una bolita o galletita
                         this.bolitas.add(new Bolita("ball.png", 10, x, y));
                         break;
-                    case 1:
+                    case 1://es para las paredes
                         this.paredes.add(new Pared("brick.png", x, y));
                         break;
-                    case 2:
+                    case 2://para los poderes
                         this.bolitaPoder.add(new BolitaPoder("power_pellet.png", 50, x, y));
                         break;
                     default:

@@ -93,6 +93,7 @@ public abstract class Enemigo extends Elemento {
                 Dibujar.draw(g, this.direcciones[1], pos.getY(), pos.getX());
                 break;
             case 3:
+                //para volver a poner en accion a pacman mientras aun tenga vidas
                 this.setVisible(false);
                 TimerTask revive = new TimerTask() {
                     @Override
@@ -100,6 +101,7 @@ public abstract class Enemigo extends Elemento {
                         setEstado(1);
                     }
                 };
+                //lo revive dentro de un tiempo especificado
                 Timer timer = new Timer();
                 timer.schedule(revive, 5000);
         }
