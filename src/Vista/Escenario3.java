@@ -10,6 +10,7 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import Controlador.Constantes;
+import Modelo.Pared;
 
 /**
  *
@@ -70,6 +71,9 @@ public class Escenario3 extends Escenario {
                 switch (mapa[x][y]) {
                     case 0:
                         this.bolitas.add(new Bolita("ball.png", 10, x, y));
+                        break;
+                    case 1:
+                        this.paredes.add(new Pared("brick.png", x, y));
                         break;
                     case 2:
                         this.bolitaPoder.add(new BolitaPoder("power_pellet.png", 50, x, y));
